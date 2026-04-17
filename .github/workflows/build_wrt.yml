@@ -52,7 +52,6 @@ jobs:
           FILE="feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json"
             if [ -f "$FILE" ]; then
               echo "Patching LuCI menu..."
-
               awk '
               /"admin\/system\/plugins"/ {
                   flag=1
