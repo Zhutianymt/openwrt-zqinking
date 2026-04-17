@@ -33,6 +33,11 @@ update_feeds() {
         echo 'src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main' >>"$BUILD_DIR/$FEEDS_CONF"
     fi
 
+    if ! grep -q "turboacc" "$FEEDS_PATH"; then
+        [ -z "$(tail -c 1 "$FEEDS_PATH")" ] || echo "" >>"$FEEDS_PATH"
+        echo "src-git turboacc https://github.com/chenmozhijin/turboacc" >>"$FEEDS_PATH"
+    fi
+
     if [ ! -f "$BUILD_DIR/include/bpf.mk" ]; then
         touch "$BUILD_DIR/include/bpf.mk"
     fi
@@ -55,5 +60,8 @@ install_feeds() {
                 ./scripts/feeds install -f -ap $(basename "$dir")
             fi
         fi
+
     done
+    # 强制安装 TurboACC
+    ./scripts/feeds install -f -a -p turboacc
 }
