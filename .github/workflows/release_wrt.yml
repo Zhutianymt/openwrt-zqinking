@@ -12,6 +12,8 @@ on:
         options:
           - redmi_ax6_immwrt
           - redmi_ax6_libwrt
+permissions:
+  contents: write   # 👈 必须加这个
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
